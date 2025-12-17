@@ -125,6 +125,7 @@ module.exports = async function (fastify, opts) {
 
         return { success: true, message: `Nickname updated to ${nick}` };
       } catch (e) {
+        console.error(e);
         return reply.status(500).send({ error: "Internal Server Error" });
       }
     }

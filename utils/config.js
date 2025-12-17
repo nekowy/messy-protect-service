@@ -2,7 +2,7 @@ const fs = require("fs");
 const crypto = require("crypto");
 const path = require("path");
 
-const configPath = path.join(__dirname, "database", "config.json");
+const configPath = path.join(__dirname, "../database", "config.json");
 
 // Ensure database directory exists
 const dbDir = path.dirname(configPath);

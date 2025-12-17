@@ -33,7 +33,7 @@ fastify.register(publicRoutes);
 // Start server
 const start = async () => {
   try {
-    await fastify.listen({ port: API_PORT, host: "0.0.0.0" });
+    fastify.listen({ port: API_PORT, host: "0.0.0.0" });
     console.log(`Server running on port ${API_PORT}`);
   } catch (err) {
     fastify.log.error(err);
