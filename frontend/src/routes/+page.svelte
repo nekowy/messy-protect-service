@@ -25,6 +25,8 @@
 	 * @type {any[] | null | undefined}
 	 */
 	let socials = [];
+	let support = 'https://discord.gg/qJdkvzMVjA';
+
 	onMount(async () => {
 		mounted = true;
 		const u = typeof localStorage !== 'undefined' ? localStorage.getItem('mp_user') : null;
@@ -63,6 +65,7 @@
             logo2 = config.logo2 || logo2;
             logo3 = config.logo3 || logo3;
 						socials = config.socials || [];
+						support = config.support || support;
         }
     } catch (e) {
         console.error("Failed to load config", e);

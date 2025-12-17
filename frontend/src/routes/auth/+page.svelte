@@ -18,7 +18,7 @@
     let logo1 = '(ERROR LOGO1)';
     let logo2 = '(ERROR LOGO2)';
     let logo3 = 'ERROR MC';
-    
+    let support = "https://discord.gg/qJdkvzMVjA";
 	onMount(async () => {
         
         try {
@@ -28,6 +28,7 @@
                 logo1 = config.logo1 || logo1;
                 logo2 = config.logo2 || logo2;
                 logo3 = config.logo3 || logo3;
+				support = config.support || support;
             }
         } catch (e) {
             console.error("Failed to load config", e);
@@ -328,7 +329,7 @@
             
             <div class="bg-black/20 p-4 text-center border-t border-white/5">
                 <p class="text-[10px] text-zinc-600 font-mono">
-                    Precisa de ajuda? <a href="https://discord.gg/MxxG8dSFVU" target="_blank" class="text-zinc-400 hover:text-cyan-400 underline decoration-zinc-700 hover:decoration-cyan-500 transition-all">Entre no Discord</a>
+                    Precisa de ajuda? <a href={support} target="_blank" class="text-zinc-400 hover:text-cyan-400 underline decoration-zinc-700 hover:decoration-cyan-500 transition-all">Entre no Discord</a>
                 </p>
             </div>
         </div>
