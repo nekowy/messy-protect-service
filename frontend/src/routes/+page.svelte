@@ -21,6 +21,10 @@
   let logo1 = '(ERROR LOGO1)';
   let logo2 = '(ERROR LOGO2)';
   let logo3 = 'ERROR MC';
+	/**
+	 * @type {any[] | null | undefined}
+	 */
+	let socials = [];
 	onMount(async () => {
 		mounted = true;
 		const u = typeof localStorage !== 'undefined' ? localStorage.getItem('mp_user') : null;
@@ -58,6 +62,7 @@
             logo1 = config.logo1 || logo1;
             logo2 = config.logo2 || logo2;
             logo3 = config.logo3 || logo3;
+						socials = config.socials || [];
         }
     } catch (e) {
         console.error("Failed to load config", e);
@@ -147,7 +152,7 @@
 					<h1
 						class="bg-gradient-to-br from-white via-zinc-200 to-zinc-500 bg-clip-text text-5xl font-black tracking-tighter text-transparent drop-shadow-sm"
 					>
-						{logo1} <span class="text-cyan-500">{logo3}{logo2}</span>
+						{logo1} <span class="text-cyan-500">{logo3} {logo2}</span>
 					</h1>
 				</div>
 				<div
@@ -436,7 +441,7 @@
 		{/if}
 
 		<div class="mt-8 flex justify-center gap-6 opacity-70">
-			{#each [{ name: 'Discord', href: 'https://discord.gg/MxxG8dSFVU' }, { name: 'Kick', href: 'https://kick.com/b4dlucky' }, { name: 'Youtube', href: 'https://www.youtube.com/@B4DLUCKY' }] as link}
+			{#each socials as link}
 				<a
 					href={link.href}
 					target="_blank"
