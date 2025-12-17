@@ -18,6 +18,9 @@
 	let mounted = false;
 	let shake = false;
 
+  let logo1 = '(ERROR LOGO1)';
+  let logo2 = '(ERROR LOGO2)';
+  let logo3 = 'ERROR MC';
 	onMount(async () => {
 		mounted = true;
 		const u = typeof localStorage !== 'undefined' ? localStorage.getItem('mp_user') : null;
@@ -48,22 +51,19 @@
 			}
 		}
 
-        try {
-            const configRes = await fetch('/config.json');
-            if (configRes.ok) {
-                const config = await configRes.json();
-                logo1 = config.logo1 || logo1;
-                logo2 = config.logo2 || logo2;
-                logo3 = config.logo3 || logo3;
-            }
-        } catch (e) {
-            console.error("Failed to load config", e);
+    try {
+        const configRes = await fetch('/config.json');
+        if (configRes.ok) {
+            const config = await configRes.json();
+            logo1 = config.logo1 || logo1;
+            logo2 = config.logo2 || logo2;
+            logo3 = config.logo3 || logo3;
         }
+    } catch (e) {
+        console.error("Failed to load config", e);
+    }
 	});
 
-    let logo1 = '(LOGO1)';
-    let logo2 = '(LOGO2)';
-    let logo3 = 'UNLUCKY MC';
 
 	async function updateWhitelist() {
 		if (!nick || nick.length < 3) {

@@ -1,4 +1,5 @@
 <script>
+	import { onMount } from 'svelte';
     import { user } from '$lib/stores';
     import { goto } from '$app/navigation';
     import { fade, fly, scale } from 'svelte/transition';
@@ -13,6 +14,25 @@
     let copied = false;
     let showPassword = false;
     let shake = false;
+
+    let logo1 = '(ERROR LOGO1)';
+    let logo2 = '(ERROR LOGO2)';
+    let logo3 = 'ERROR MC';
+    
+	onMount(async () => {
+        
+        try {
+            const configRes = await fetch('/config.json');
+            if (configRes.ok) {
+                const config = await configRes.json();
+                logo1 = config.logo1 || logo1;
+                logo2 = config.logo2 || logo2;
+                logo3 = config.logo3 || logo3;
+            }
+        } catch (e) {
+            console.error("Failed to load config", e);
+        }
+    })
 
     async function register() {
         if(!username || username.length < 3) { 
@@ -121,7 +141,7 @@
             <div class="p-8 pt-10">
                 <div class="text-center mb-8 space-y-1 relative">
                     <h2 class="text-3xl font-black tracking-tight text-white drop-shadow-md">
-                        (LOGO 3) <span class="text-transparent bg-clip-text bg-gradient-to-br from-cyan-400 to-blue-600">Whitelist</span>
+                        {logo3} <span class="text-transparent bg-clip-text bg-gradient-to-br from-cyan-400 to-blue-600">Whitelist</span>
                     </h2>
                     <p class="text-[10px] text-zinc-500 font-mono uppercase tracking-[0.2em] hover:text-cyan-400 transition-colors cursor-default">
                         Acesso Restrito
