@@ -23,9 +23,9 @@ if (!fs.existsSync(configPath)) {
   config = {
     PORT: 3000,
     NODE_ENV: "development",
-    VERIFICATION_KEY: generateKey(8),
-    DB_SECRET: generateKey(16),
-    MP_API_KEY: generateKey(32),
+    VERIFICATION_KEY: generateKey(16),
+    DB_SECRET: generateKey(32),
+    MP_API_KEY: generateKey(64),
   };
 
   fs.writeFileSync(configPath, JSON.stringify(config, null, 2));
