@@ -33,8 +33,16 @@ module.exports = async function (fastify, opts) {
       }
 
       const { username } = request.body;
-      const clientIp = request.ip;
+
+      const clientIp =
+        request.headers["cf-connecting-ip"] ||
+        request.headers["x-real-ip"] ||
+        request.headers["x-forwarded-for"]?.split(",")[0]?.trim() ||
+        request.ip;
+
       const ipHash = hashIp(clientIp);
+
+
 
       if (!username || username.length < 3) {
         return reply.status(400).send({ error: "Invalid username" });
